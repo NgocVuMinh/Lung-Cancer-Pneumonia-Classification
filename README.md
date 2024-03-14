@@ -67,6 +67,6 @@ python gradcam.py --base incepv3 --input_size 299 --model_path "incepv3.h5" \
 ```
 Example GradCAM output:
 <p float="left">
-  <img src="https://github.com/NgocVuMinh/Lung-Cancer-Pneumonia-Classification/blob/main/gradcam_cancer_input.png" width="100" />
-  <img src="https://github.com/NgocVuMinh/Lung-Cancer-Pneumonia-Classification/blob/main/gradcam_output.png" width="100" /> 
+  <img src="https://github.com/NgocVuMinh/Lung-Cancer-Pneumonia-Classification/blob/main/gradcam_cancer_input.png" width="300" />
+  <img src="https://github.com/NgocVuMinh/Lung-Cancer-Pneumonia-Classification/blob/main/gradcam_output.png" width="300" /> 
 </p>
