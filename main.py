@@ -1,13 +1,9 @@
 import numpy as np
 import pandas as pd
-import seaborn as sns
 import matplotlib.pyplot as plt
-import matplotlib.colors as mcolors
 from matplotlib.pyplot import figure
 from matplotlib import cm
-from skimage import io
 from tqdm import tqdm
-import random
 import cv2
 import os
 import re
@@ -15,13 +11,12 @@ import tensorflow as tf
 import keras
 from keras.utils import to_categorical
 from keras.models import Model, Sequential, load_model
-from keras.layers import Input, Dense, Dropout, Flatten, Conv2D, MaxPool2D, BatchNormalization, AveragePooling2D, GlobalAveragePooling2D
+from keras.layers import Input, Dense, Dropout, Flatten, Conv2D, BatchNormalization, GlobalAveragePooling2D
 from keras.optimizers import Adam
-from keras.callbacks import ModelCheckpoint, ReduceLROnPlateau
+from keras.callbacks import ModelCheckpoint
 from keras.applications import ResNet50, ResNet101, VGG16, VGG19, InceptionV3, MobileNetV2, InceptionResNetV2, Xception
 from keras.applications.densenet import DenseNet121
 from keras.src.preprocessing.image import ImageDataGenerator
-from keras.src.preprocessing import image
 from sklearn.metrics import confusion_matrix, classification_report, roc_curve, auc
 tf.compat.v1.disable_eager_execution()
 from models import Vgg16, Vgg19, resnet50, resnet101, densenet121, mobnetv2, incepresv2, inceptionv3, xception
@@ -47,7 +42,7 @@ EPOCHS = args.epochs
 base = args.base
 out_dir = args.out
 
-X_train, X_val, X_test, Y_train, Y_val, Y_test = data_processing(data, IMAGE_SIZE)
+X_train, X_val, X_test, Y_train, Y_val, Y_test = data_processing(data, base, IMAGE_SIZE)
 print('Validation Shape: ', X_val.shape)
 print('Train Shape: ', X_train.shape)
 print('Test Shape: ', X_test.shape)
@@ -130,9 +125,9 @@ print(classification_report(Y_true, Y_pred))
 total=sum(sum(cm))
 accuracy=(cm[0,0]+cm[1,1])/total
 print ('Accuracy : ', accuracy)
-sensitivity = cm[0,0]/(cm[0,0]+cm[0,1])
+sensitivity = cm[1,1]/(cm[1,0]+cm[1,1])
 print('Sensitivity : ', sensitivity )
-specificity = cm[1,1]/(cm[1,0]+cm[1,1])
+specificity = cm[0,0]/(cm[0,0]+cm[0,1])
 print('Specificity : ', specificity)
 
 # Calculating AUC

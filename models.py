@@ -1,16 +1,14 @@
-import keras
 import tensorflow as tf
-from keras.utils import to_categorical
 from keras.models import Model, Sequential, load_model
-from keras.layers import Input, Dense, Dropout, Flatten, Conv2D, MaxPool2D, BatchNormalization, AveragePooling2D, GlobalAveragePooling2D
+from keras.layers import Input, Dense, Dropout, Flatten, Conv2D, BatchNormalization, GlobalAveragePooling2D
 from keras.optimizers import Adam
-from keras.callbacks import ModelCheckpoint, ReduceLROnPlateau
+from keras.callbacks import ModelCheckpoint
 from keras.applications import ResNet50, ResNet101, VGG16, VGG19, InceptionV3, MobileNetV2, InceptionResNetV2, Xception
 from keras.applications.densenet import DenseNet121
 tf.compat.v1.disable_eager_execution()
 
 
-def densenet121(fine_tune=128, IMAGE_SIZE):
+def densenet121(IMAGE_SIZE, fine_tune=128):
     conv_base = DenseNet121(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, N_ch))
     if fine_tune > 0:
         for layer in conv_base.layers[:-fine_tune]:
@@ -36,7 +34,7 @@ def densenet121(fine_tune=128, IMAGE_SIZE):
     return model
 
 
-def mobnetv2(fine_tune=46, IMAGE_SIZE):
+def mobnetv2(IMAGE_SIZE, fine_tune=46):
     conv_base = MobileNetV2(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, N_ch))
     if fine_tune > 0:
         for layer in conv_base.layers[:-fine_tune]:
@@ -62,7 +60,7 @@ def mobnetv2(fine_tune=46, IMAGE_SIZE):
     return model
 
 
-def inceptionv3(fine_tune=94, IMAGE_SIZE):
+def inceptionv3(IMAGE_SIZE, fine_tune=94):
     conv_base = InceptionV3(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, N_ch))
     if fine_tune > 0:
         for layer in conv_base.layers[:-fine_tune]:
@@ -88,7 +86,7 @@ def inceptionv3(fine_tune=94, IMAGE_SIZE):
     return model
 
 
-def incepresv2(fine_tune=170, IMAGE_SIZE):
+def incepresv2(IMAGE_SIZE, fine_tune=170):
     conv_base = InceptionResNetV2(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, N_ch))
     if fine_tune > 0:
         for layer in conv_base.layers[:-fine_tune]:
@@ -114,7 +112,7 @@ def incepresv2(fine_tune=170, IMAGE_SIZE):
     return model
 
 
-def resnet50(fine_tune=53, IMAGE_SIZE):
+def resnet50(IMAGE_SIZE, fine_tune=53):
     conv_base = ResNet50(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, N_ch))
     if fine_tune > 0:
         for layer in conv_base.layers[:-fine_tune]:
@@ -143,7 +141,7 @@ def resnet50(fine_tune=53, IMAGE_SIZE):
     return model
 
 
-def resnet101(fine_tune=104, IMAGE_SIZE):
+def resnet101(IMAGE_SIZE, fine_tune=104):
     conv_base = ResNet101(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, N_ch))
     if fine_tune > 0:
         for layer in conv_base.layers[:-fine_tune]:
@@ -172,7 +170,7 @@ def resnet101(fine_tune=104, IMAGE_SIZE):
     return model
 
 
-def Vgg16(fine_tune=7, IMAGE_SIZE):
+def Vgg16(IMAGE_SIZE, fine_tune=7):
     conv_base = VGG16(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, 3))
     if fine_tune > 0:
         for layer in conv_base.layers[:-fine_tune]:
@@ -195,7 +193,7 @@ def Vgg16(fine_tune=7, IMAGE_SIZE):
     return model
 
 
-def Vgg19(fine_tune=8, IMAGE_SIZE):
+def Vgg19(IMAGE_SIZE, fine_tune=8):
     conv_base = VGG19(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, N_ch))
     if fine_tune > 0:
         for layer in conv_base.layers[:-fine_tune]:
@@ -219,7 +217,7 @@ def Vgg19(fine_tune=8, IMAGE_SIZE):
     return model
 
 
-def xception(fine_tune=41, IMAGE_SIZE):
+def xception(IMAGE_SIZE, fine_tune=41):
     conv_base = Xception(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, N_ch))
     if fine_tune > 0:
         for layer in conv_base.layers[:-fine_tune]:

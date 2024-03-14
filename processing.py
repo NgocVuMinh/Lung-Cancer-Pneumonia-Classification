@@ -7,7 +7,7 @@ from tensorflow.keras.utils import to_categorical
 from models import Vgg16, Vgg19, resnet50, resnet101, densenet121, mobnetv2, incepresv2, inceptionv3, xception
 
 
-def data_processing(data, IMAGE_SIZE):
+def data_processing(data, base, IMAGE_SIZE):
 
     disease_types=['Non-cancer','Cancer']
     train_dir = os.path.join(data, 'Training')
@@ -51,18 +51,18 @@ def data_processing(data, IMAGE_SIZE):
         if image is not None:
             X_test[i] = cv2.resize(image.copy(), (IMAGE_SIZE, IMAGE_SIZE), interpolation=cv2.INTER_AREA)
 
-    if args.model in ['vgg16', 'vgg19', 'incepv3', 'xcep']:
+    if base in ['vgg16', 'vgg19', 'incepv3', 'xcep']:
         X_train = X_train / 255.0
         X_val = X_val / 255.0
         X_test = X_test / 255.0
-    elif args.model in ['res50', 'res101']:
+    elif base in ['res50', 'res101']:
         X_train -= np.mean(X_train, axis=(0, 1, 2))
         X_train = X_train[..., ::-1]
         X_val -= np.mean(X_val, axis=(0, 1, 2))
         X_val = X_val[..., ::-1]
         X_test -= np.mean(X_test, axis=(0, 1, 2))
         X_test = X_test[..., ::-1]
-    elif args.model in ['dense', 'mob', 'incepres']:
+    elif base in ['dense', 'mob', 'incepres']:
         X_train = (X_train / 127.5) - 1.0
         X_val = (X_val / 127.5) - 1.0
         X_test = (X_test / 127.5) - 1.0
