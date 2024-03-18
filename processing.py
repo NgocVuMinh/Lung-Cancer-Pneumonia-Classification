@@ -71,11 +71,11 @@ def data_processing(data, base, IMAGE_SIZE):
     
     Y_train = to_categorical(train['DiseaseID'], num_classes=2)
     Y_val = to_categorical(val['DiseaseID'], num_classes=2)
-    Y_test = to_categorical(test['DiseaseID'], num_classes=2)
+    Y_test = test['DiseaseID'].values
 
     return X_train, X_val, X_test, Y_train, Y_val, Y_test
 
-def get_model(base):
+def get_model(base, IMAGE_SIZE):
     d = {
         'dense': densenet121,
         'mob': mobnetv2,
@@ -88,7 +88,7 @@ def get_model(base):
         'xcep': xception
         }
     try:
-        model = d[base]()
+        model = d[base](IMAGE_SIZE)
     except KeyError:
         raise ValueError('Invalid model specified')
     return model

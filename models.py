@@ -9,7 +9,7 @@ tf.compat.v1.disable_eager_execution()
 
 
 def densenet121(IMAGE_SIZE, fine_tune=128):
-    conv_base = DenseNet121(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, N_ch))
+    conv_base = DenseNet121(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, 3))
     if fine_tune > 0:
         for layer in conv_base.layers[:-fine_tune]:
             layer.trainable = False
@@ -35,7 +35,7 @@ def densenet121(IMAGE_SIZE, fine_tune=128):
 
 
 def mobnetv2(IMAGE_SIZE, fine_tune=46):
-    conv_base = MobileNetV2(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, N_ch))
+    conv_base = MobileNetV2(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, 3))
     if fine_tune > 0:
         for layer in conv_base.layers[:-fine_tune]:
             layer.trainable = False
@@ -61,7 +61,7 @@ def mobnetv2(IMAGE_SIZE, fine_tune=46):
 
 
 def inceptionv3(IMAGE_SIZE, fine_tune=94):
-    conv_base = InceptionV3(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, N_ch))
+    conv_base = InceptionV3(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, 3))
     if fine_tune > 0:
         for layer in conv_base.layers[:-fine_tune]:
             layer.trainable = False
@@ -87,7 +87,7 @@ def inceptionv3(IMAGE_SIZE, fine_tune=94):
 
 
 def incepresv2(IMAGE_SIZE, fine_tune=170):
-    conv_base = InceptionResNetV2(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, N_ch))
+    conv_base = InceptionResNetV2(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, 3))
     if fine_tune > 0:
         for layer in conv_base.layers[:-fine_tune]:
             layer.trainable = False
@@ -113,7 +113,7 @@ def incepresv2(IMAGE_SIZE, fine_tune=170):
 
 
 def resnet50(IMAGE_SIZE, fine_tune=53):
-    conv_base = ResNet50(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, N_ch))
+    conv_base = ResNet50(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, 3))
     if fine_tune > 0:
         for layer in conv_base.layers[:-fine_tune]:
             layer.trainable = False
@@ -142,7 +142,7 @@ def resnet50(IMAGE_SIZE, fine_tune=53):
 
 
 def resnet101(IMAGE_SIZE, fine_tune=104):
-    conv_base = ResNet101(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, N_ch))
+    conv_base = ResNet101(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, 3))
     if fine_tune > 0:
         for layer in conv_base.layers[:-fine_tune]:
             layer.trainable = False
@@ -194,7 +194,7 @@ def Vgg16(IMAGE_SIZE, fine_tune=7):
 
 
 def Vgg19(IMAGE_SIZE, fine_tune=8):
-    conv_base = VGG19(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, N_ch))
+    conv_base = VGG19(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, 3))
     if fine_tune > 0:
         for layer in conv_base.layers[:-fine_tune]:
             layer.trainable = False
@@ -218,7 +218,7 @@ def Vgg19(IMAGE_SIZE, fine_tune=8):
 
 
 def xception(IMAGE_SIZE, fine_tune=41):
-    conv_base = Xception(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, N_ch))
+    conv_base = Xception(include_top=False, weights='imagenet', input_shape=(IMAGE_SIZE, IMAGE_SIZE, 3))
     if fine_tune > 0:
         for layer in conv_base.layers[:-fine_tune]:
             layer.trainable = False

@@ -58,7 +58,7 @@ test_datagen = ImageDataGenerator()
 test_datagen.fit(X_test)
 
 
-model = get_model(base)
+model = get_model(base, IMAGE_SIZE)
 model.summary(show_trainable=True)
 
 
@@ -112,14 +112,11 @@ print(f'Training {base} completed. Model saved to {mod_dir}')
 
 print('Evaluating on the testing set')
 Y_pred = model.predict(X_test)
-Y_pred = np.argmax(Y_pred, axis=1)
-Y_true = np.argmax(Y_test, axis=1)
-
+Y_pred_bi = np.argmax(Y_pred, axis=1)
 # Confusion matrix
-cm = confusion_matrix(Y_true, Y_pred)
+cm = confusion_matrix(Y_test, Y_pred_bi)
 print(cm)
-print(confusion_matrix(Y_true, Y_pred))
-print(classification_report(Y_true, Y_pred))
+print(classification_report(Y_test, Y_pred_bi))
 
 # Calculating metrics
 total=sum(sum(cm))
