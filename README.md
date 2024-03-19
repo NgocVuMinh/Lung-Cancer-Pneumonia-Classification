@@ -55,7 +55,7 @@ Choose one of the following for the `--base` argument:
 
 Example command:
 ```
-python main.py --data ./sample_data --base incepv3 --input_size 299 --epochs 5 --batch 16
+python main.py --data ./sample_data --base incepv3 --input_size 299 --epochs 5 --batch 5
 ```
 
 An example notebook to train InceptionV3 was also provided: [example_notebook.ipynb](https://github.com/NgocVuMinh/Lung-Cancer-Pneumonia-Classification/blob/main/example_notebook.ipynb)
